@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME?=	mame
-PORTVERSION=	0.166
-PORTREVISION?=	5
+PORTVERSION=	0.195
 CATEGORIES=	emulators
 
 MAINTAINER=	ports@FreeBSD.org
@@ -26,17 +25,16 @@ USES=		compiler:c11 gmake jpeg pkgconfig python:2.7,build shebangfix
 SHEBANG_FILES=	src/devices/cpu/m6502/m6502make.py \
 		src/devices/cpu/m6809/m6809make.py \
 		src/devices/cpu/mcs96/mcs96make.py \
-		src/devices/cpu/tms57002/tmsmake.py \
-		src/build/*.py
+		src/devices/cpu/tms57002/tmsmake.py
 USE_XORG=	x11 xext xi xinerama xrender
 USE_GL=		gl
 USE_SDL=	sdl2 ttf2
-USE_QT4=	gui moc_build qmake_build
+USE_QT5=	gui qmake_build widgets
 MTARGET?=	mame
 MSUBTARGET?=	mame
 CFLAGS+=	-I${LOCALBASE}/include
 MAKE_ENV=	NOWERROR=1 USE_NETWORK=1 \
-		LD="${CXX}" PYTHON="${PYTHON_CMD}" SDL_LIBVER="sdl2" \
+		LD="${CXX}" PYTHON="${PYTHON_CMD}" \
 		OPT_FLAGS="${CXXFLAGS}" GCC_LDFLAGS="${LDFLAGS}" \
 		TARGET="${MTARGET}" SUBTARGET="${MSUBTARGET}" FULLNAME="mame" SDL_NETWORK="pcap"
 MAKE_ARGS=	TARGETOS=freebsd VERBOSE=1 TOOLS=1
@@ -62,17 +60,21 @@ EMULATOR=	${MSUBTARGET}
 PLIST_SUB=	EMULATOR=${EMULATOR}
 
 post-patch:
+	@${RM} ${WRKSRC}/3rdparty/bx/include/compat/freebsd/dirent.h
+	@${RM} ${WRKSRC}/3rdparty/bx/include/compat/freebsd/signal.h
+	@${MV} ${GENIE}/build/gmake.freebsd ${GENIE}/build/gmake.bsd
 	@${REINPLACE_CMD} -e \
 		's|^\(CC \)|#\1| ; \
 		 s|^\(CXX \)|#\1| ; \
+		 s|^\(CXX:\)|#\1| ; \
 		 s|^\(LD \)|#\1| ; \
 		 s|^\(PYTHON \)|#\1| ; \
 		 s| .(ARCH)|| ; \
 		 s|FreeBSD|${OPSYS}|g' \
 		 ${WRKSRC}/makefile \
+		 ${WRKSRC}/src/devices/cpu/m68000/makefile \
 		 ${GENIE}/build/gmake.bsd/genie.make
 	@${REINPLACE_CMD} -e 's|gcc|cc|; s|g++|c++|' \
-		${GENIE}/src/actions/codelite/codelite_project.lua \
 		${GENIE}/src/tools/gcc.lua \
 		${GENIE}/src/tools/snc.lua \
 		${GENIE}/tests/test_gmake_cpp.lua
@@ -81,7 +83,7 @@ post-patch:
 		${GENIE}/src/host/scripts.c
 	# we can't fix two types of python shebangs, so do these manually
 	@${REINPLACE_CMD} -i "" -e "s|/usr/bin/env python|${PYTHON_CMD}|" \
-		${WRKSRC}/src/build/png*.py
+		${WRKSRC}/scripts/build/png*.py
 	@${REINPLACE_CMD} -e 's|"python"|"${PYTHON_CMD}"|' \
 		${WRKSRC}/scripts/genie.lua
 	@${GREP} -rl '"png.h"' ${WRKSRC}/src | ${XARGS} ${REINPLACE_CMD} \
@@ -97,7 +99,7 @@ do-install:
 .if ${MSUBTARGET:Mmame}
 	(cd ${WRKSRC} && \
 		${INSTALL_PROGRAM} chdman jedutil ldresample ldverify \
-		romcmp testkeys unidasm \
+		romcmp unidasm \
 		${STAGEDIR}${PREFIX}/libexec/mame)
 .endif
 .if ${MSUBTARGET:Mmess}
@@ -107,8 +109,6 @@ do-install:
 .endif
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} artwork ${STAGEDIR}${DATADIR})
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} hash ${STAGEDIR}${DATADIR})
-	(cd ${WRKSRC}/src/osd/sdl && \
-		${COPYTREE_SHARE} keymaps ${STAGEDIR}${DATADIR})
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} docs ${STAGEDIR}${DOCSDIR})
 	${INSTALL_DATA} ${WRKDIR}/target.ini \
 		${STAGEDIR}${EXAMPLESDIR}/${MSUBTARGET}.ini
