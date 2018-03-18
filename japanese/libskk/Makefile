@@ -2,10 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	libskk
-PORTVERSION=	1.0.1
-PORTREVISION=	2
+PORTVERSION=	1.0.3
 CATEGORIES=	japanese
-MASTER_SITES=	https://bitbucket.org/libskk/libskk/downloads/
+MASTER_SITES=	https://github.com/ueno/${PORTNAME}/releases/download/${PORTVERSION}/
 
 MAINTAINER=	hiroto.kagotani@gmail.com
 COMMENT=	Library to deal with Japanese Kana-to-Kanji conversion method
@@ -14,12 +13,12 @@ LICENSE=	GPLv3
 
 BUILD_DEPENDS=	valac:lang/vala \
 		p5-XML-Parser>=0:textproc/p5-XML-Parser
-LIB_DEPENDS=	libgee.so:devel/libgee06 \
+LIB_DEPENDS=	libgee-0.8.so:devel/libgee \
 		libjson-glib-1.0.so:devel/json-glib
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		gmake libtool pathfix pkgconfig
+USES=		gmake libtool pathfix pkgconfig tar:xz
 USE_GNOME=	intlhack introspection:build
 USE_LDCONFIG=	yes
 
