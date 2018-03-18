@@ -2,10 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	ibus-skk
-PORTVERSION=	1.4.1
-PORTREVISION=	4
+PORTVERSION=	1.4.3
 CATEGORIES=	japanese
-MASTER_SITES=	GHC
+MASTER_SITES=	https://github.com/ueno/${PORTNAME}/releases/download/${DISTNAME}/
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Japanese SKK input engine for IBus
@@ -14,10 +13,8 @@ RUN_DEPENDS=	${LOCALBASE}/share/skk/SKK-JISYO.L:japanese/skk-jisyo
 LIB_DEPENDS=	libskk.so:japanese/libskk \
 		libibus-1.0.so:textproc/ibus
 
-USES=		gettext gmake pkgconfig python
+USES=		gettext gmake pkgconfig python tar:xz
 USE_GNOME=	intltool
-USE_GITHUB=	yes
-GH_ACCOUNT=	ueno
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	DATADIRNAME=share
 
