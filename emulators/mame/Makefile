@@ -10,13 +10,13 @@ COMMENT=	Multi Arcade Machine Emulator
 
 LICENSE=	GPLv2
 
+ONLY_FOR_ARCHS=		amd64 i386
+ONLY_FOR_ARCHS_REASON=	not yet ported to any arch other than x86
+
 LIB_DEPENDS=	libFLAC.so:audio/flac \
 		libexpat.so:textproc/expat2 \
 		libfontconfig.so:x11-fonts/fontconfig
 RUN_DEPENDS=	liberation-fonts-ttf>=0:x11-fonts/liberation-fonts-ttf
-
-ONLY_FOR_ARCHS=		amd64 i386
-ONLY_FOR_ARCHS_REASON=	not yet ported to any arch other than x86
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	mamedev
