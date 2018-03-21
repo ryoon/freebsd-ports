@@ -1,5 +1,5 @@
---- src/osd/eigccx86.h.orig	2018-03-12 02:58:55.205941000 +0900
-+++ src/osd/eigccx86.h	2018-03-12 03:02:13.350927000 +0900
+--- src/osd/eigccx86.h.orig	2018-02-27 15:59:06 UTC
++++ src/osd/eigccx86.h
 @@ -31,7 +31,7 @@
      multiply and return the full 64 bit result
  -------------------------------------------------*/

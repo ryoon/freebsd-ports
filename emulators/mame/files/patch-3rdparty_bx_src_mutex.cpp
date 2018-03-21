@@ -1,5 +1,5 @@
---- 3rdparty/bx/src/mutex.cpp.orig	2018-02-28 00:59:06.000000000 +0900
-+++ 3rdparty/bx/src/mutex.cpp	2018-03-12 03:09:57.943353000 +0900
+--- 3rdparty/bx/src/mutex.cpp.orig	2018-02-27 15:59:06 UTC
++++ 3rdparty/bx/src/mutex.cpp
 @@ -13,6 +13,7 @@
  	|| BX_PLATFORM_IOS     \
  	|| BX_PLATFORM_OSX     \

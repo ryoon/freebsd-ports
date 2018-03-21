@@ -1,5 +1,5 @@
---- src/lib/netlist/plib/pparser.h.orig	2018-03-12 03:06:23.053773000 +0900
-+++ src/lib/netlist/plib/pparser.h	2018-03-12 03:06:40.281886000 +0900
+--- src/lib/netlist/plib/pparser.h.orig	2018-02-27 15:59:06 UTC
++++ src/lib/netlist/plib/pparser.h
 @@ -118,8 +118,8 @@ protected:
  private:
  	void skipeol();

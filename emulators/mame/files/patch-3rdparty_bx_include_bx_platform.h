@@ -1,5 +1,5 @@
---- 3rdparty/bx/include/bx/platform.h.orig	2018-03-12 03:09:05.625070000 +0900
-+++ 3rdparty/bx/include/bx/platform.h	2018-03-12 03:09:47.018847000 +0900
+--- 3rdparty/bx/include/bx/platform.h.orig	2018-02-27 15:59:06 UTC
++++ 3rdparty/bx/include/bx/platform.h
 @@ -35,6 +35,7 @@
  #define BX_CRT_MINGW  0
  #define BX_CRT_MSVC   0

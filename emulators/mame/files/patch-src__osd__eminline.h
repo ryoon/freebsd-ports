@@ -1,5 +1,5 @@
---- src/osd/eminline.h.orig	2018-03-12 03:02:46.561400000 +0900
-+++ src/osd/eminline.h	2018-03-12 03:03:03.988448000 +0900
+--- src/osd/eminline.h.orig	2018-02-27 15:59:06 UTC
++++ src/osd/eminline.h
 @@ -21,7 +21,7 @@
  
  #if defined(__GNUC__)

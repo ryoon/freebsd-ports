@@ -1,6 +1,6 @@
---- scripts/toolchain.lua.orig	2018-03-12 08:39:00.497654000 +0900
-+++ scripts/toolchain.lua	2018-03-12 08:41:52.263428000 +0900
-@@ -23,6 +23,7 @@
+--- scripts/toolchain.lua.orig	2018-02-27 15:59:06 UTC
++++ scripts/toolchain.lua
+@@ -23,6 +23,7 @@ newoption {
  		{ "android-x64",   "Android - x64"          },
  		{ "asmjs",         "Emscripten/asm.js"      },
  		{ "freebsd",       "FreeBSD"                },
@@ -8,7 +8,7 @@
  		{ "linux-gcc",     "Linux (GCC compiler)"   },
  		{ "linux-clang",   "Linux (Clang compiler)" },
  		{ "ios-arm",       "iOS - ARM"              },
-@@ -168,6 +169,10 @@
+@@ -168,6 +169,10 @@ function toolchain(_buildDir, _subDir)
  			location (_buildDir .. "projects/" .. _subDir .. "/".. _ACTION .. "-freebsd")
  		end
  

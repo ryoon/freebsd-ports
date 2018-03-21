@@ -1,5 +1,5 @@
---- 3rdparty/bx/src/thread.cpp.orig	2018-02-28 00:59:06.000000000 +0900
-+++ 3rdparty/bx/src/thread.cpp	2018-03-12 03:10:07.329595000 +0900
+--- 3rdparty/bx/src/thread.cpp.orig	2018-02-27 15:59:06 UTC
++++ 3rdparty/bx/src/thread.cpp
 @@ -11,6 +11,7 @@
  	|| BX_PLATFORM_IOS     \
  	|| BX_PLATFORM_OSX     \
