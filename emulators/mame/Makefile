@@ -1,19 +1,21 @@
 # Created by: alepulver
 # $FreeBSD$
 
-PORTNAME?=	mame
+PORTNAME=	mame
 PORTVERSION=	0.195
 CATEGORIES=	emulators
 
 MAINTAINER=	ports@FreeBSD.org
-COMMENT?=	Multi Arcade Machine Emulator
+COMMENT=	Multi Arcade Machine Emulator
+
+LICENSE=	GPLv2
 
 LIB_DEPENDS=	libFLAC.so:audio/flac \
 		libexpat.so:textproc/expat2 \
 		libfontconfig.so:x11-fonts/fontconfig
 RUN_DEPENDS=	liberation-fonts-ttf>=0:x11-fonts/liberation-fonts-ttf
 
-ONLY_FOR_ARCHS=		i386 amd64
+ONLY_FOR_ARCHS=		amd64 i386
 ONLY_FOR_ARCHS_REASON=	not yet ported to any arch other than x86
 
 USE_GITHUB=	yes
