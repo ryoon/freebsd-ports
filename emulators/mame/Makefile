@@ -23,6 +23,14 @@ GH_ACCOUNT=	mamedev
 GH_PROJECT=	mame				# explicit (master port)
 GH_TAGNAME=	mame${PORTVERSION:S/.//}
 
+OPTIONS_DEFINE=		DEBUG DOCS EXAMPLES
+
+.include <bsd.port.options.mk>
+
+.if ${OSVERSION} < 1100055
+USE_GCC=	4.9+
+.endif
+
 USES=		compiler:c11 gmake jpeg pkgconfig python:2.7,build shebangfix
 SHEBANG_FILES=	src/devices/cpu/m6502/m6502make.py \
 		src/devices/cpu/m6809/m6809make.py \
@@ -48,7 +56,6 @@ PORTEXAMPLES=	${MSUBTARGET}.ini
 SUB_FILES=	pkg-message target.ini
 SUB_LIST=	MTARGET=${MTARGET} MSUBTARGET=${MSUBTARGET}
 
-OPTIONS_DEFINE=		DEBUG DOCS EXAMPLES
 DEBUG_MAKE_ENV=		DEBUG=1
 
 .include <bsd.port.options.mk>
