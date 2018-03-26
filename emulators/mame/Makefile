@@ -28,7 +28,7 @@ OPTIONS_DEFINE=		DEBUG DOCS EXAMPLES
 .include <bsd.port.options.mk>
 
 .if ${OSVERSION} < 1100055
-USE_GCC=	4.9+
+USE_GCC=	6
 .endif
 
 USES=		compiler:c11 gmake jpeg pkgconfig python:2.7,build shebangfix
